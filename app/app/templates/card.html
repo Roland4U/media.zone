@@ -1,0 +1,91 @@
+<!--Movie Card-->
+<li class="m-1 mt-5 bd-highlight" style="width: 150px; height: 250px;">
+    <div class=" li  mt-1">
+        <div class="card-header p-0 card m_card text-white bg-dark">
+            <div class="card-img-block">
+
+                <div class="info-box d-flex justify-content-start flex-column bd-highlight">
+                    <!-- close btn -->
+                    <div class="bd-highlight">
+                        <div class="mb-auto p-0 d-flex flex-row-reverse bd-highlight">
+                            <button style="display: flex;align-items: center;padding:0px 1px 1px 0px;" type="button"
+                                class="m-0 border-0 btn btn-outline-danger rounded-circle btn-lg">
+                                <span class="material-icons m-0 p-0" style="font-size: 25px;">close</span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- close btn end -->
+
+                    <div class="d-flex justify-content-between flex-column bd-highlight ">
+
+
+                        <div class="mb-auto p-0 bd-highlight  d-flex align-self-center">
+                            <button style="display: flex;align-items: center;padding:0px 0px;" type="button"
+                                class="m-1 border-0 btn btn-outline-primary rounded-circle btn-lg">
+                                <span class="material-icons m-0 p-0" style="font-size: 80px;">play_circle_outline</span>
+                            </button>
+                        </div>
+                        <!--  -->
+                        <!-- Trailer btn -->
+                        <div class="mb-auto p-1 mt-1 bd-highlight  d-flex align-self-center">
+                            <button style="display: flex;align-items: center;padding:0px 8px 0px 0px;" type="button"
+                                class="m-0 btn btn-light btn-sm">
+                                <span class="material-icons"
+                                    style="background-color: rgba(0, 0, 0, 0.3);padding:0px 1px 0px 1px;">play_arrow</span>&nbsp;
+                                ТРИЛЛЕР
+                            </button>
+                        </div>
+                        <!-- Trailer btn end -->
+                        <!--  -->
+                        <div class="p-0 bd-highlight d-flex align-self-center">
+
+
+                            <button style="display: flex;align-items: center;padding:1px 6px;" type="button"
+                                class="m-1 mb-0 p-0 pr-2 btn btn-success btn-sm">
+                                <span class="material-icons"
+                                    style="background-color: #003b054d;padding:1px 1px 0px 1px;">save_alt</span>&nbsp;
+                                СКАЧАТЬ
+                            </button>
+                        </div>
+
+                        <div class="p-0 mt-0 btn border-0 btn-outline-primary border bd-highlight d-flex align-self-center"
+                            style="display: flex;align-items: center;padding:1px 6px;background-color:transparent; height: 25px;">
+
+
+                            <a href="{% url 'num' obj.num %}">
+                                <span class="m-0 material-icons d-flex align-self-center"
+                                    style="padding: 0px 0px 0px 0px; font-size: 55px;">more_horiz</span>
+                            </a>
+
+
+
+                        </div>
+
+
+                        <!--  -->
+                    </div>
+
+                </div>
+                <!-- <img class="img-fluid" src="https://via.placeholder.com/200x300" alt="Card image cap"> -->
+                <div class="poster img-fluid"
+                    style="background-image: url('{{ obj.poster }}');">
+                </div>
+                <!-- <img class="poster img-fluid" src="https://img4.imgzona.video/images/film_240/903/903831.jpg"
+                      alt=Card image cap"> -->
+
+            </div>
+            <div class="card-body p-2" style="z-index: 999;">
+                <span class="card-title m-0" style="font-size: 12px;">{{ obj.title }}</span>
+                <span class=" mb-1"
+                    style="display: block; position: relative; float: right; top: -15px; font-size: 12px; color: darkgray;">{{ obj.year }}</span>
+                <p class="card-text mt-2" style="font-size: small; color: darkgray;">
+                  
+                </p>
+
+
+
+            </div>
+        </div>
+    </div>
+    <!-- End Movie Card -->
+</li>

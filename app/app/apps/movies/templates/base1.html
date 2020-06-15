@@ -1,0 +1,166 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"> -->
+  <style>
+    
+  </style>
+  <title>ARQ Media Zone</title>
+  <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+</head>
+
+<body> 
+  <div class="container-fluid">
+
+
+
+
+
+    <nav class="site-header sticky-top py-1 w-100">
+
+      <div class="m-0 p-0 container-fluid d-flex flex-column flex-md-row justify-content-between">
+
+        <div class="m-0 d-flex justify-content-start align-items-center col-9 logo_d ">
+          <a id="btn_back" class="btn border-0 btn-outline-secondary pr-1 material-icons">arrow_back_ios</a>
+          <a class=" btn logo_btn"></a>
+        </div>
+
+        <div class="searchBox">
+          <input class="searchInput" type="text" name="" placeholder="Search">
+          <a role="button" class="btn btn-light border-0 searchButton" href="#">
+            <i class="material-icons">
+              search
+            </i>
+          </a>
+        </div>
+
+        <div class="profile_box">
+          <div role="button" id="profile_line" class="profile_line" >
+            <img src="{% static '/img/face_co.png' %}" alt="" class="profile_img">
+          </div>
+        </div>
+        <div id="profile_block" class="profile_block card ">
+            <img src="{% static'/img/face_co.png' %}" class="card-img-top mx-auto" alt="...">
+            <div class="card-body pl-3">
+              
+              <h6 class="m-0 p-0 p_mail card-title text-light d-flex flex-row"><span class="material-icons mr-2 " style="bottom: 3px;">email</span>petrosyan.roland@yandex.com</h6>
+              <p class="card-text">
+              </p>
+              <a href="#" class="btn btn-sm btn-outline-danger float-right">Log out</a>
+            </div>
+        </div>
+
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+
+        <!-- nav menu block -->
+        <nav id="sidebar" class="col-auto  sidebar " style="width: 50px;">
+          <div id="sidebar-menu">
+            <div id="toggleMenu">
+              <div class="list any material-icons">menu</div>
+              <div class="thumbs any material-icons">more_vert</div>
+            </div>
+            <ul class="any">
+              <li class="selected" title="На главный">
+                <span class="item_icon material-icons">house</span>
+                <span class="item_name">На главный</span>
+              </li>
+              <li title="На главный">
+                <span class="item_icon material-icons">local_movies</span>
+                <span class="item_name">Фильмы</span>
+              </li>
+              <li title="На главный">
+                <span class="item_icon material-icons">movie_creation</span>
+                <span class="item_name">Сериалы</span>
+              </li>
+              <li title="На главный">
+                <span class="item_icon material-icons">live_tv</span>
+                <span class="item_name">ТВ каналы</span>
+              </li>
+              <li title="На главный">
+                <span class="item_icon material-icons">ondemand_video</span>
+                <span class="item_name">Передачи</span>
+              </li>
+              <li title="На главный">
+                <span class="item_icon material-icons">audiotrack</span>
+                <span class="item_name">Музыка</span>
+              </li>
+              <li title="На главный">
+                <span class="item_icon material-icons">radio</span>
+                <span class="item_name">Радио</span>
+              </li>
+              <hr class="border border-secondary">
+              <li title="На главный">
+                <span class="item_icon material-icons">save_alt</span>
+                <span class="item_name">Загрузки <span id="ds"
+                    class="ml-3 badge badge-dark border border-success text-wrap" style="width: 4rem;"
+                    data-toggle="tooltip" data-placement="right" title="Tooltip on right">1215 KB/s</span></span>
+              </li>
+
+              <li title="На главный">
+                <span class="item_icon material-icons">settings_applications</span>
+                <span class="item_name">Настройка</span>
+              </li>
+
+            </ul>
+
+
+          </div>
+        </nav>
+        <!-- End nav menu block -->
+        <!-- Main -->
+          <main role="main" class="col-auto px-0 py-5 d-block">
+
+          <!-- Content -->
+  
+              {% block content %}
+                
+              {% endblock content %}
+
+        </main>
+        <!-- End main -->
+      </div>
+    </div>
+
+
+  </div>
+
+  <!-- End Content -->
+
+  <!-- Filters -->
+
+  <!-- End filters -->
+
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/jquery-ui.min.js"></script>
+  <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>

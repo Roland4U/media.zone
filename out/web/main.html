@@ -1,0 +1,29 @@
+<webview id="webview" preload="./preload.js" src="http://127.0.0.1:8000/" httpreferrer="https://google.com" style="width: 100%; height: auto;" disablewebsecurity></webview>
+
+<script>
+//   onload = () => {
+//     const webview = document.querySelector('webview')
+//     const indicator = document.querySelector('.indicator')
+//     indicator.innerText(
+//     '{% for m in movies %}',
+//       '{{ m.title }}',
+//     '{% endfor %}',
+//     )
+//     indicator.innerText = 'loading...'
+
+//     const loadstart = () => {
+//     }
+
+//     const loadstop = () => {
+//       indicator.innerText = ''
+//     }
+
+//     webview.addEventListener('did-start-loading', loadstart)
+//     webview.addEventListener('did-stop-loading', loadstop)
+//   }
+</script>
+
+    
+<script>
+    require('./renderer.js');
+</script>

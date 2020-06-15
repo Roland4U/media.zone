@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" style="overflow: auto;">
+  <head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+  <!-- Dash Navbar Top -->
+  <nav class="navbar navbar-light bg-faded navbar-static-top dash-navbar-top nb-visible">
+  <button class="nb-btn-toggle">
+          <span class="fa fa-bars"></span>
+  </button>
+  <form class="form-inline float-xs-right">
+    <input class="form-control" type="text" placeholder="Search">
+  </form>
+</nav>
+
+    <!-- Dash Navbar Left -->
+    <div class="dash-navbar-left nb-visible">
+      <a class="navbar-brand" href="#">Navbar</a>
+
+      <p class="nb-nav-title">Home</p>
+      <ul class="nb-nav">
+        <li>
+          <a class="collapsed" data-toggle="collapse" href="#collapseStatistics" aria-expanded="false" aria-controls="collapseStatistics">
+            <span class="glyphicon glyphicon-stats nb-link-icon"></span>
+            <span class="nb-link-text">Statistics</span>
+            <span class="fa fa-angle-up nb-btn-sub-collapse"></span>
+          </a>
+          <!-- Dropdown level one -->
+          <ul class="nb-sub-one collapse" id="collapseStatistics">
+            <li>
+              <a href="#">
+                <span class="fa fa-clock-o nb-link-icon"></span>
+                <span class="nb-link-text">Daily</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="fa fa-history nb-link-icon"></span>
+                <span class="nb-link-text">Annual</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="active">
+          <a href="#">
+            <span class="glyphicon glyphicon-folder-open nb-link-icon"></span>
+            <span class="nb-link-text">Pages</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="glyphicon glyphicon-comment nb-link-icon"></span>
+            <span class="nb-link-text">Comments</span>
+            <span class="badge">4</span>
+          </a>
+        </li>
+        <li>
+          <a class="collapsed" data-toggle="collapse" href="#collapseLevelOne" aria-expanded="false" aria-controls="collapseLevelOne">
+            <span class="fa fa-sort-amount-desc nb-link-icon"></span>
+            <span class="nb-link-text">Dropdown level 1</span>
+            <span class="fa fa-angle-up nb-btn-sub-collapse"></span>
+          </a>
+          <!-- Dropdown level one -->
+          <ul class="nb-sub-one collapse" id="collapseLevelOne">
+            <li>
+              <a href="#">
+                <span class="fa fa-slack nb-link-icon"></span>
+                <span class="nb-link-text">Level 1</span>
+              </a>
+            </li>
+            <li>
+              <a class="collapsed" data-toggle="collapse" href="#collapseLevelTwo" aria-expanded="false" aria-controls="collapseLevelTwo">
+                <span class="fa fa-level-down nb-link-icon"></span>
+                <span class="nb-link-text">Dropdown level 2</span>
+                <span class="fa fa-angle-up nb-btn-sub-collapse"></span>
+              </a>
+              <!-- Dropdown level two -->
+              <ul class="nb-sub-two collapse" id="collapseLevelTwo">
+                <li>
+                  <a href="#">
+                    <span class="fa fa-wifi nb-link-icon"></span>
+                    <span class="nb-link-text">Level 2</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span class="fa fa-wifi nb-link-icon"></span>
+                    <span class="nb-link-text">Level 2</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span class="fa fa-wifi nb-link-icon"></span>
+                    <span class="nb-link-text">Level 2</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">
+                <span class="fa fa-slack nb-link-icon"></span>
+                <span class="nb-link-text">Level 1</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <p class="nb-nav-title">Filter</p>
+      <ul class="nb-nav">
+        <li>
+          <a href="#">
+            <span class="fa fa-image nb-link-icon"></span>
+            <span class="nb-link-text">Image</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="fa fa-video-camera nb-link-icon"></span>
+            <span class="nb-link-text">Video</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="glyphicon glyphicon-folder-open nb-link-icon"></span>
+            <span class="nb-link-text">Audio</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="fa fa-file-text nb-link-icon"></span>
+            <span class="nb-link-text">File</span>
+            <span class="badge">4</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="fa fa-link nb-link-icon"></span>
+            <span class="nb-link-text">Active link</span>
+          </a>
+        </li>
+      </ul>
+      <p class="nb-nav-title">Category</p>
+      <ul class="nb-nav">
+        <li>
+          <a class="collapsed" data-toggle="collapse" href="#collapseCategoryAll" aria-expanded="false" aria-controls="collapseCategoryAll">
+            <span class="glyphicon glyphicon-tags nb-link-icon"></span>
+            <span class="nb-link-text">All</span>
+            <span class="fa fa-angle-up nb-btn-sub-collapse"></span>
+          </a>
+          <!-- Dropdown level one -->
+          <ul class="nb-sub-one collapse" id="collapseCategoryAll">
+            <li>
+              <a href="#">
+                <span class="fa fa-dot-circle-o nb-link-icon"></span>
+                <span class="nb-link-text">UI</span>
+                <span class="badge">4</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="fa fa-dot-circle-o nb-link-icon"></span>
+                <span class="nb-link-text">Design</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="fa fa-dot-circle-o nb-link-icon"></span>
+                <span class="nb-link-text">App</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="fa fa-dot-circle-o nb-link-icon"></span>
+                <span class="nb-link-text">Homepage</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">
+            <span class="fa fa-dot-circle-o nb-link-icon"></span>
+            <span class="nb-link-text">Popular</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="fa fa-dot-circle-o nb-link-icon"></span>
+            <span class="nb-link-text">Handpicked</span>
+          </a>
+        </li>
+      </ul>
+    </div> <!-- /.dash-navbar-left -->
+
+
+    <div class="content-wrap nb-visible" data-effect="nb-push">
+      <div class="container-fluid">
+        <div class="row">
+         <!-- Your content here -->
+         <div class="dummy-div" style="height:1500px;">
+
+         </div>
+         <!-- End of your content -->
+        </div>
+      </div>
+    </div> <!-- /.content-wrap -->
+
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
+    <script src="jquery.touchSwipe.min.js" charset="utf-8"></script>
+    <script src="script.js" charset="utf-8"></script>
+  </body>
+</html>

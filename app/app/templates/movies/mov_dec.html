@@ -1,0 +1,257 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="card col-9 m-5 p-0 text-white bg-secondary" style="background-blend-mode: color-burn;">
+        <div class="row no-gutters justify-content-center">
+            <div class="col-12 bg-dark text-center">
+                <h2 class="card-title my-3">{{ md.name }}</h5>
+            </div>
+            <div class="row container-fluid my-4 mx-0">
+                <div class="col-md-3 p-0">
+                    <img src="{{ md.poster }}"
+                        class="card-img" alt="...">
+                </div>
+                <div class="col-md-7 p-0">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <p class="m-0">Год выпуска: <span>{{ md.year }}</span></p>
+                                <p class="m-0">Страна: <span>{{ md.location }}</span></p>
+                                <p class="m-0">Жанр: <span>md3</span></p>
+                                <p class="m-0">Качество: <span>md4</span></p>
+                            </div>
+                            <div class="col">
+                                <p class="m-0">Перевод: <span>md1</span></p>
+                                <p class="m-0">Продолжительность: <span>md2</span></p>
+                                <p class="m-0">Бюджет: <span>md3</span></p>
+                                <p class="m-0">Премьера: <span>md4</span></p>
+                            </div>
+                        </div>
+                        <br>
+                        <p class="card-text">{{ md.des }}</p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                </div>
+                <div class="col-2 p-0">
+                    <div class=" d-flex flex-column justify-content-around align-items-center mt-3">
+                                        
+                            <button id="play_btn" style="padding:2px ; height: 36px; font-size: 14px; padding-right: 8px;" type="button"
+                                class="btn btn-primary btn-lg d-flex align-items-center btn-block">
+                                <span class="material-icons "
+                                    style="background-color: rgba(0, 0, 0, 0.3);padding:1px; font-size: 24px; border: 2px solid #fff">play_arrow</span>&nbsp;
+                                <span>СМОТРЕТЬ</span>
+                            </button>                                   
+                        <!--  -->
+                        <!-- Trailer btn -->
+                            <button style="padding:2px ; height: 36px; font-size: 14px; padding-right: 8px;" type="button"
+                                class="btn btn-info btn-lg d-flex align-items-center btn-block video-btn" data-toggle="modal"
+                                
+                                src="https://www.youtube.com/embed/S1bhQ3M5mtw" data-target="#myModal">
+                                <span class="material-icons"
+                                    style="background-color: rgba(0, 0, 0, 0.3);padding:1px; font-size: 26px;">play_arrow</span>&nbsp;
+                                ТРИЛЛЕР
+                            </button>
+                        <!-- Trailer btn end -->
+                        <!-- Trailer btn -->
+                            <button style="padding:2px ; height: 36px; font-size: 14px; padding-right: 8px;" type="button"
+                                class="btn btn-success btn-lg d-flex align-items-center btn-block">
+                                <span class="material-icons"
+                                    style="background-color: rgba(0, 0, 0, 0.3);padding:1px; font-size: 26px;">save_alt</span>&nbsp;
+                                СКАЧАТЬ
+                            </button>
+
+                        <!-- Trailer btn end -->      
+
+
+                            <script>
+                                (function () {
+                                    // Retrieve remote BrowserWindow
+                                    const { BrowserWindow } = require('electron').remote
+
+                                    function createWindow() {
+
+                                        const v_player = new BrowserWindow({
+                                            // width: 412,
+                                            // height: 412,
+                                            minHeight: 300,
+                                            minWidth: 350,
+                                            // maxHeight: 412,
+                                            // maxWidth: 412,
+                                            icon: "css.ico",
+                                            autoHideMenuBar: true,
+                                            // frame: false,
+                                            // thickFrame: false,
+                                            // opacity: 0.9,
+                                            // titleBarStyle: "customButtonsOnHover",
+                                            // transparent: false,
+                                            titleBarStyle: "hidden",
+                                            resizable: true,
+                                            // vibrancy: "window",
+                                            webPreferences: {
+                                                nodeIntegration: true,
+                                                nativeWindowOpen: true,
+                                            },
+                                            show: false,
+                                        });
+                                        
+                                        document.getElementById("play_btn").addEventListener("click", (e) => {
+                                            v_player.loadURL(
+                                                `https://cdn.plrjs.com/player/k4rz3391aa89i/izc6xultqnb1.html?file={{ md.video }}`
+                                            );
+                                            v_player.show();
+                                            v_player.seek
+                                        });
+                                    };
+
+                                    document.onreadystatechange = () => {
+                                        if (document.readyState == "complete") {
+                                            createWindow();
+                                        }
+                                    };
+                                })();
+                            </script>
+
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-wrap justify-content-araund row container">
+            <div class="col-2"><a href=""><img src="https://m.media-amazon.com/images/M/MV5BMTM0ODU5Nzk2OV5BMl5BanBnXkFtZTcwMzI2ODgyNQ@@._V1_UY209_CR3,0,140,209_AL_.jpg" alt="">Johnny Depp</a></div>
+            <div class="col-2"><a href=""><img src="https://m.media-amazon.com/images/M/MV5BODg3MzYwMjE4N15BMl5BanBnXkFtZTcwMjU5NzAzNw@@._V1_UY209_CR15,0,140,209_AL_.jpg" alt="">Angelina Jolie</a></div>
+            <div class="col-2"><a href=""><img src=https://m.media-amazon.com/images/M/MV5BMjI0MTg3MzI0M15BMl5BanBnXkFtZTcwMzQyODU2Mw@@._V1_UY209_CR7,0,140,209_AL_.jpg"" alt="">Leonardo DiCaprio</a></div>
+            <div class="col-2"><a href=""><img src="https://m.media-amazon.com/images/M/MV5BMTc0MDMyMzI2OF5BMl5BanBnXkFtZTcwMzM2OTk1MQ@@._V1_UX140_CR0,0,140,209_AL_.jpg" alt="">Morgan Freeman</a></div>
+            <div class="col-2"><a href=""><img src="https://m.media-amazon.com/images/M/MV5BNjUxNDcwMTg4Ml5BMl5BanBnXkFtZTcwMjU4NDYyOA@@._V1_UY209_CR10,0,140,209_AL_.jpg" alt="">Keanu Reeves</a></div>
+            <div class="col-2"><a href=""><img src="https://m.media-amazon.com/images/M/MV5BNTczMzk1MjU1MV5BMl5BanBnXkFtZTcwNDk2MzAyMg@@._V1_UY209_CR2,0,140,209_AL_.jpg" alt="">Will Smith</a></div>
+            <div class="col-2"><a href=""><img src="https://m.media-amazon.com/images/M/MV5BMTI5NDY5NjU3NF5BMl5BanBnXkFtZTcwMzQ0MTMyMw@@._V1_UY209_CR1,0,140,209_AL_.jpg" alt="">Sandra Bullock</a></div>
+            <div class="col-2"><a href=""><img src="https://m.media-amazon.com/images/M/MV5BMjA0MjMzMTE5OF5BMl5BanBnXkFtZTcwMzQ2ODE3Mw@@._V1_UY209_CR19,0,140,209_AL_.jpg" alt="">Bruce Willis</a></div>
+            <div class="col-2"><a href=""><img src="https://m.media-amazon.com/images/M/MV5BMTk5Mzc4ODU0Ml5BMl5BanBnXkFtZTcwNjU1NTI0Mw@@._V1_UY209_CR8,0,140,209_AL_.jpg" alt="">Charlize Theron</a></div>
+        </div>
+        <div class="row container col-8">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0"
+                    allowfullscreen></iframe><br>
+            </div>
+        </div><br>
+        <div class="row container">
+            <ul class="container-fluid">
+                
+                <li class="col-12 border border-dark d-flex flex-row justify-content-around align-items-center btn btn-secondary">
+                    <span>1</span>
+                    <span>webdl</span>
+                    <span>1920x1080</span>
+                    <span>-</span>
+                    <span>ru</span>
+                    <span>lostfilm</span>
+                    <a href="" class="btn btn-dark">></a>
+                    <a href="" class="btn btn-dark">v</a>
+                </li>
+                <li class="col-12 border border-dark d-flex flex-row justify-content-around align-items-center btn btn-secondary">
+                    <span>1</span>
+                    <span>webdl</span>
+                    <span>1920x1080</span>
+                    <span>-</span>
+                    <span>ru</span>
+                    <span>lostfilm</span>
+                    <a href="" class="btn btn-dark">></a>
+                    <a href="" class="btn btn-dark">v</a>
+                </li>
+                <li class="col-12 border border-dark d-flex flex-row justify-content-around align-items-center btn btn-secondary">
+                    <span>1</span>
+                    <span>webdl</span>
+                    <span>1920x1080</span>
+                    <span>-</span>
+                    <span>ru</span>
+                    <span>lostfilm</span>
+                    <a href="" class="btn btn-dark">></a>
+                    <a href="" class="btn btn-dark">v</a>
+                </li>
+                <li class="col-12 border border-dark d-flex flex-row justify-content-around align-items-center btn btn-secondary">
+                    <span>1</span>
+                    <span>webdl</span>
+                    <span>1920x1080</span>
+                    <span>-</span>
+                    <span>ru</span>
+                    <span>lostfilm</span>
+                    <a href="" class="btn btn-dark">></a>
+                    <a href="" class="btn btn-dark">v</a>
+                </li>
+                <li class="col-12 border border-dark d-flex flex-row justify-content-around align-items-center btn btn-secondary">
+                    <span>1</span>
+                    <span>webdl</span>
+                    <span>1920x1080</span>
+                    <span>-</span>
+                    <span>ru</span>
+                    <span>lostfilm</span>
+                    <a href="" class="btn btn-dark">></a>
+                    <a href="" class="btn btn-dark">v</a>
+                </li>
+                <li class="col-12 border border-dark d-flex flex-row justify-content-around align-items-center btn btn-secondary">
+                    <span>1</span>
+                    <span>webdl</span>
+                    <span>1920x1080</span>
+                    <span>-</span>
+                    <span>ru</span>
+                    <span>lostfilm</span>
+                    <a href="" class="btn btn-dark">></a>
+                    <a href="" class="btn btn-dark">v</a>
+                </li>
+                <li class="col-12 border border-dark d-flex flex-row justify-content-around align-items-center btn btn-secondary">
+                    <span>1</span>
+                    <span>webdl</span>
+                    <span>1920x1080</span>
+                    <span>-</span>
+                    <span>ru</span>
+                    <span>lostfilm</span>
+                    <a href="" class="btn btn-dark">></a>
+                    <a href="" class="btn btn-dark">v</a>
+                </li>
+            </ul>
+        </div>
+    </div>   
+</div>
+
+
+
+{% endblock content %}
+<script>
+    $(document).ready(function () {
+
+            // Gets the video src from the data-src on each button
+
+            var $videoSrc;
+            $('.video-btn').click(function () {
+                $videoSrc = $(this).data("src");
+            });
+            console.log($videoSrc);
+
+
+
+            // when the modal is opened autoplay it  
+            $('#myModal').on('shown.bs.modal', function (e) {
+
+                // set the video src to autoplay and not to show related video. Youtube related video is like a box of chocolates... you never know what you're gonna get
+                $("#video").attr('src', $videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0");
+            })
+
+
+
+            // stop playing the youtube video when I close the modal
+            $('#myModal').on('hide.bs.modal', function (e) {
+                // a poor man's stop video
+                $("#video").attr('src', $videoSrc);
+            })
+
+
+
+
+
+
+            // document ready  
+        });
+
+    
+
+</script>

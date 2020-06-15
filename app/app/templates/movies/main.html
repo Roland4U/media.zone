@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+<!--Movie Card-->
+{% block content %}
+        <div class="row">
+            <div role="main" class="container-fluid w-100 ">
+    
+                <ul class="list-unstyled w-100 d-flex flex-wrap justify-content-around ">
+                    
+                    {% for obj in movies %}
+                    
+                        {% include "card.html" %}
+                            
+                    {% endfor %}
+                            
+                </ul>
+            </div>
+        </div>
+
+    {% endblock content %}
