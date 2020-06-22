@@ -1,4 +1,98 @@
 {
-    "python.pythonPath": "C:\\Program Files\\Python37-32\\python.exe",
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "python.languageServer": "Jedi",
+    "sqltools.connections": [
+        {
+            "database": "${workspaceFolder:media.zone}/app/db.sqlite3",
+            "driver": "SQLite",
+            "name": "app",
+            "previewLimit": 50
+        }
+    ],
+    "sqltools.useNodeRuntime": true
 }
+// {
+//     // "workbench.iconTheme": "vscode-icons",
+//     // "workbench.colorTheme": "Monokai ST3",
+//     // "editor.suggestSelection": "first",
+//     // "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+//     "auto-rename-tag.activationOnLanguage": [
+//         "html"
+//     ],
+//     "python.autoUpdateLanguageServer": true,
+//     "python.jediMemoryLimit": 0,
+//     "python.jediPath": "C:\\Program Files\\Python37-32\\Lib\\site-packages\\jedi",
+//     "python.jediEnabled": true,
+//     "path-intellisense.absolutePathToWorkspace": true,
+//     "editor.suggestSelection": "first",
+//     // "python.analysis.loglevel": trace,
+//     "telemetry.enableTelemetry": false,
+//     "telemetry.enableCrashReporter": false,
+//     "window.zoomLevel": -1,
+//     "files.autoSave": "afterDelay",
+//     "editor.multiCursorModifier": "ctrlCmd",
+//     "editor.wordWrap": "on",
+//     "workbench.settings.useSplitJSON": true,
+//     "liveServer.settings.donotShowInfoMsg": true,
+//     "editor.renderWhitespace": "boundary",
+//     "files.exclude": {
+//         "**/__**": true,
+//         "**/.vcode": true,
+//         "**/.venv": true,
+//         "**/**.sqlite3": true,
+//         "**/migrations": true,
+//         "node_modules": true
+//     },
+//     "editor.formatOnPaste": true,
+//     "python.analysis.memory.keepLibraryAst": true,
+//     "python.analysis.memory.keepLibraryLocalVariables": true,
+//     "python.autoComplete.addBrackets": true,
+//     "python.linting.banditEnabled": true,
+//     // "python.dataScience.allowUnauthorizedRemoteConnection": true,
+//     "[javascript]": {
+//         "editor.defaultFormatter": "vscode.typescript-language-features"
+//     },
+//     "[html]": {
+//         "editor.defaultFormatter": "vscode.html-language-features"
+//     },
+//     "terminal.integrated.rendererType": "dom",
+//     "vscode_vibrancy.theme": "Dark (Only Subbar)",
+//     "[css]": {
+//         "editor.defaultFormatter": "esbenp.prettier-vscode"
+//     },
+//     "workbench.iconTheme": "material-icon-theme",
+//     "editor.tabCompletion": "on",
+//     "workbench.editor.highlightModifiedTabs": true,
+//     "workbench.editor.tabSizing": "shrink",
+//     "zenMode.hideTabs": false,
+//     "auto-close-tag.fullMode": true,
+//     "auto-close-tag.SublimeText3Mode": true,
+//     "javascript.implicitProjectConfig.checkJs": true,
+//     "debug.node.showUseWslIsDeprecatedWarning": false,
+//     "npm.autoDetect": "off",
+//     "vsintellicode.features.python.deepLearning": "default",
+//     "vsintellicode.python.completionsEnabled": true,
+//     // "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+//     "git.autofetch": true,
+//     "git.enableSmartCommit": true,
+//     // "html.mirrorCursorOnMatchingTag": true,
+//     "git.alwaysShowStagedChangesResourceGroup": true,
+//     "explorer.confirmDragAndDrop": false,
+//     "window.menuBarVisibility": "default",
+//     "workbench.activityBar.visible": true,
+//     "workbench.sideBar.location": "left",
+//     "editor.renderControlCharacters": true,
+//     "python.autoComplete.showAdvancedMembers": true,
+//     "python.globalModuleInstallation": true,
+//     "python.languageServer": "Jedi",
+//     "[json]": {
+//         "editor.defaultFormatter": "vscode.json-language-features"
+//     },
+//     "launch": {},
+//     "[markdown]": {
+//         "editor.quickSuggestions": true
+//     },
+//     "dictCompletion.userDictionary": [],
+//     "workbench.colorTheme": "Monokai ST3",
+//     "python.pydev.java.home": "/bin/java",
+// }

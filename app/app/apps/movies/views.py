@@ -1,34 +1,23 @@
 from django.shortcuts import render
+from django.contrib import messages
 from django.views.generic.base import View
+from django.views.generic import TemplateView
+from django.db import models
+from .models import *
 from .models import Movie
+import json
 
 #BeautifulSoup part
 import requests
 from bs4 import BeautifulSoup as bs
+
 
 # f = open('list.json', 'w', encoding='utf-8')
 # fr = open('list.json', 'r', encoding='utf-8')
 
 
 
-#Model
-# data = {
-#     'title': name
-#     'tagline':
-#     'description':
-#     'poster':
-#     'year':
-#     'country':
-#     'directors':
-#     'actors':
-#     'genres':
-#     'world_premier':
-#     'budget':
-#     'fess_in_usa':
-#     'fess_in_world':
-#     'category':
-#     'url':
-# }
+
 
 
 max_pages = 1
@@ -71,7 +60,7 @@ for x in range(2, max_pages + 1):
         img = el.select('.overlaytumb>img')
         data2[str(num)] = {'title': name[0]['aria-label'], 'url': url[0]['href'], 'poster': 'https://kinogo.by'+img[0]['src'], 'num': num}
 
-print(data)
+# print(data)
 class MoviesView(View):
     def get(self, request):
 
@@ -192,3 +181,58 @@ class Serial_dec(View):
                
 
         return render(request, 'movies/mov_dec.html', context={'movie': movie, 'md': md})
+
+def upload(request):
+    if request.method == 'POST':
+        uploaded_file = request.FILES['document']
+        print(uploaded_file.name)
+        print(int(uploaded_file.size) / 1000)
+
+        # if not uploaded_file.endswith('.json'):
+        #     messages.error(request, 'This is not a JSON file')
+        
+        data_set = json.load(uploaded_file)
+
+        for col in data_set:
+            _, c = Movie.objects.update_or_create(
+                title=col['title'],
+                quality=col['quality'],
+                translate=col['translate'],
+                duration=col['duration'],
+                description=col['des'],
+                poster=col['poster'],
+                year=col['year'],
+                country=col['loacation'],
+                directors=col['director'],
+                actors=col['actors'],
+                genres=col['genres'],
+                budget=col['budget'],
+                # category=1,
+                # kinopoisk=col['rating']['kinopoisk'],
+                # amdb=col['rating']['IMDB:'],
+                # url=col['page'],
+                # data_url=col['page']
+                # draft=col['draft']
+            )
+    return render(request, 'upload.html')
+
+#Model
+# data = {
+#     'title': name
+#     'tagline':
+#     'description':
+#     'poster':
+#     'year':
+#     'country':
+#     'directors':
+#     'actors':
+#     'genres':
+#     'world_premier':
+#     'budget':
+#     'fess_in_usa':
+#     'fess_in_world':
+#     'category':
+#     'url':
+
+
+

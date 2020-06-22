@@ -75,9 +75,7 @@ class Movie(models.Model):
          help_text="указать сумму в долларах"
         )
 
-    category = models.ForeignKey(
-        Category, on_delete=models.SET_NULL, null=True
-        )
+    category = models.ForeignKey(Category,on_delete=models.CASCADE, null=False)
 
     kinopoisk = models.FloatField("Кинопоиск", null=True)
     amdb = models.FloatField("AMDB", null=True)
@@ -126,7 +124,7 @@ class Serial(models.Model):
     #      default=0,
     #      help_text="указать сумму в долларах"
     #     )
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=False)
 
     kinopoisk = models.FloatField("Кинопоиск")
     amdb = models.FloatField("AMDB")

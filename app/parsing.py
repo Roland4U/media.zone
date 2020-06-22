@@ -11,7 +11,7 @@
 #     print('no')
 
 import json
-from app.apps.movies import models
+from app.apps.movies.models import Movie
 
 links_list = []
 with open('kino.json', 'r') as data:
@@ -21,5 +21,5 @@ with open('kino.json', 'r') as data:
 
 print(str(links_list))
 
-l = models.Movie.objects.all()
+l = Movie.objects.all()
 print(str(l))
