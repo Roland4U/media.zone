@@ -2,9 +2,9 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.views.generic.base import View
 from django.views.generic import TemplateView
-from django.db import models
-from .models import *
-from .models import Movie
+# from django.db import models
+# from .models import *
+from .models import Movie, Actor, Category, Genre
 import json
 
 #BeautifulSoup part
@@ -201,19 +201,21 @@ def upload(request):
                 duration=col['duration'],
                 description=col['des'],
                 poster=col['poster'],
-                year=col['year'],
-                country=col['loacation'],
-                directors=col['director'],
-                actors=col['actors'],
-                genres=col['genres'],
-                budget=col['budget'],
-                # category=1,
-                # kinopoisk=col['rating']['kinopoisk'],
-                # amdb=col['rating']['IMDB:'],
-                # url=col['page'],
-                # data_url=col['page']
+                year=int(col['year']),
+                country=col['loacation'][0],
+                url=col['page'],
+                data_url=col['page']
                 # draft=col['draft']
             )
+
+                # c.directors= Actor.objects.get(name=str(col['director'][0])),
+                # c.actors=col['actors'],
+                # c.genres=Genre.objects.Get(name=col['genres']),
+                # c.budget=int(col['budget'].replace('$', '')),
+                # c.category=1,
+                # c.kinopoisk=col['rating']['kinopoisk'],
+                # c.amdb=col['rating']['IMDB:'],
+           
     return render(request, 'upload.html')
 
 #Model
