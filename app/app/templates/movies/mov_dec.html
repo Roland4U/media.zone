@@ -8,31 +8,34 @@
     <div class="card col-9 m-5 p-0 text-white bg-secondary" style="background-blend-mode: color-burn;">
         <div class="row no-gutters justify-content-center">
             <div class="col-12 bg-dark text-center">
-                <h2 class="card-title my-3">{{ md.name }}</h5>
+                <h2 class="card-title my-3">{{ movie.name }}</h5>
             </div>
             <div class="row container-fluid my-4 mx-0">
                 <div class="col-md-3 p-0">
-                    <img src="{{ md.poster }}"
+                    <img src="{{ movie.poster }}"
                         class="card-img" alt="...">
                 </div>
                 <div class="col-md-7 p-0">
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
-                                <p class="m-0">Год выпуска: <span>{{ md.year }}</span></p>
-                                <p class="m-0">Страна: <span>{{ md.location }}</span></p>
-                                <p class="m-0">Жанр: <span>md3</span></p>
-                                <p class="m-0">Качество: <span>md4</span></p>
+                                <p class="m-0">Год выпуска: <span>{{ movie.year }}</span></p>
+                                <p class="m-0">Страна: <span>{{ movie.location }}</span></p>
+                                <p class="m-0">Жанр: <span>{% for g in movie.genres.all %}
+                                    {{ g.name|title }},
+                                    {% endfor %}
+                                </span></p>
+                                <p class="m-0">Качество: <span>{{ movie.quality }}</span></p>
                             </div>
                             <div class="col">
-                                <p class="m-0">Перевод: <span>md1</span></p>
-                                <p class="m-0">Продолжительность: <span>md2</span></p>
-                                <p class="m-0">Бюджет: <span>md3</span></p>
-                                <p class="m-0">Премьера: <span>md4</span></p>
+                                <p class="m-0">Перевод: <span>{{ movie.translate }}</span></p>
+                                <p class="m-0">Продолжительность: <span>{{ movie.duration }}</span></p>
+                                <p class="m-0">Бюджет: <span>{{ movie.budget }}</span></p>
+                                <!-- <p class="m-0">Премьера: <span>{{ movie. }}</span></p> -->
                             </div>
                         </div>
                         <br>
-                        <p class="card-text">{{ md.des }}</p>
+                        <p class="card-text">{{ movie.description }}</p>
                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                     </div>
                 </div>

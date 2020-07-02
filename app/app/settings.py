@@ -136,3 +136,4 @@ STATICFILES_DIRS = [
     os.path.join(PROJECT_ROOT, 'static'),
 
 ]
+CSRF_FAILURE_VIEW = 'movies.views.csrf_failure'

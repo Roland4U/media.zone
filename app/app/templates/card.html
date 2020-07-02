@@ -1,5 +1,5 @@
 <!--Movie Card-->
-<li class="m-1 mt-5 bd-highlight" style="width: 150px; height: 250px;">
+<li class="m-1 mt-5 bd-highlight infinite-item" style="width: 150px; height: 250px;">
     <div class=" li  mt-1">
         <div class="card-header p-0 card m_card text-white bg-dark">
             <div class="card-img-block">
@@ -51,10 +51,10 @@
                         <div class="p-0 mt-0 btn border-0 btn-outline-primary border bd-highlight d-flex align-self-center"
                             style="display: flex;align-items: center;padding:1px 6px;background-color:transparent; height: 25px;">
 
-
-                            <a href="{% url 'num' obj.num %}">
+                            <!-- Details btn -->
+                            <a href="{{ obj.get_absolute_url }}" >
                                 <span class="m-0 material-icons d-flex align-self-center"
-                                    style="padding: 0px 0px 0px 0px; font-size: 55px;">more_horiz</span>
+                                    style="padding: 0px 0px 0px 0px; font-size: 55px; cursor: pointer;">more_horiz</span>
                             </a>
 
 
