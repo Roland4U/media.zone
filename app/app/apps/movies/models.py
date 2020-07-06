@@ -21,9 +21,7 @@ class Category(models.Model):
 class Actor(models.Model):
     """Model definition for Actor."""
     name = models.CharField("Имя", max_length=150)
-    age = models.PositiveSmallIntegerField("Возраст", default=0)
-    description = models.TextField("Описание")
-    image = models.URLField("Изображение")
+
 
     def __str__(self):
         """Unicode representation of Actor."""
@@ -77,16 +75,16 @@ class Movie(models.Model):
          help_text="указать сумму в долларах"
         )
 
-    category = models.ForeignKey(Category,on_delete=models.CASCADE, null=False)
+    # category = models.ForeignKey(Category,on_delete=models.CASCADE, null=False)
 
     kinopoisk = models.CharField("Кинопоиск", null=True, max_length=30)
     amdb = models.CharField("AMDB", null=True, max_length=30)
-    slug = models.SlugField(max_length=200, unique=True)
+    url = models.SlugField(max_length=200, unique=True)
     data_url = models.URLField("Адрес для данных", null=True)
     draft = models.BooleanField("Черновик", default=False)
 
     def get_absolute_url(self):
-        return reverse("movie_dec", kwargs={"slug": self.slug})
+        return reverse("movie_dec", kwargs={"slug": self.url})
     
 
     def __str__(self):
@@ -99,53 +97,53 @@ class Movie(models.Model):
         verbose_name_plural = 'Фильмы'
 
 
-class Serial(models.Model):
-    """Model definition for Serial."""
+# class Serial(models.Model):
+#     """Model definition for Serial."""
 
-    title = models.CharField("Название", max_length=200)
-    quality = models.CharField("Качество", max_length=50)
-    translate = models.CharField("Перевод", max_length=60)
-    duration = models.CharField("Продолжительность", max_length=60)
-    # tagline = models.CharField("Слоган", max_length=200, default='')
-    description = models.TextField("Описание")
-    poster = models.URLField("Постер")
-    year = models.PositiveSmallIntegerField("Дата выхода",  default=2020)
-    country = models.CharField("Страна", max_length=50)
-    directors = models.ManyToManyField(Actor, verbose_name="Режисер(ы)", related_name="serial_director")
-    actors = models.ManyToManyField(Actor, verbose_name="Актеры", related_name="serial_actors")
-    genres = models.ManyToManyField(Genre, verbose_name="Жанры")
-    # world_premier = models.DateField("Премьера в мире", default=date.today)
-    budget = models.PositiveIntegerField(
-        "Бюджет",
-         default=0,
-         help_text="указать сумму в долларах"
-        )
-    # fess_in_usa = models.PositiveIntegerField(
-    #     "Сборы в США",
-    #      default=0,
-    #      help_text="указать сумму в долларах"
-    #     )
-    # fess_in_world = models.PositiveIntegerField(
-    #     "Сборы в мире",
-    #      default=0,
-    #      help_text="указать сумму в долларах"
-    #     )
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=False)
+#     title = models.CharField("Название", max_length=200)
+#     quality = models.CharField("Качество", max_length=50)
+#     translate = models.CharField("Перевод", max_length=60)
+#     duration = models.CharField("Продолжительность", max_length=60)
+#     # tagline = models.CharField("Слоган", max_length=200, default='')
+#     description = models.TextField("Описание")
+#     poster = models.URLField("Постер")
+#     year = models.PositiveSmallIntegerField("Дата выхода",  default=2020)
+#     country = models.CharField("Страна", max_length=50)
+#     directors = models.ManyToManyField(Actor, verbose_name="Режисер(ы)", related_name="serial_director")
+#     actors = models.ManyToManyField(Actor, verbose_name="Актеры", related_name="serial_actors")
+#     genres = models.ManyToManyField(Genre, verbose_name="Жанры")
+#     # world_premier = models.DateField("Премьера в мире", default=date.today)
+#     budget = models.PositiveIntegerField(
+#         "Бюджет",
+#          default=0,
+#          help_text="указать сумму в долларах"
+#         )
+#     # fess_in_usa = models.PositiveIntegerField(
+#     #     "Сборы в США",
+#     #      default=0,
+#     #      help_text="указать сумму в долларах"
+#     #     )
+#     # fess_in_world = models.PositiveIntegerField(
+#     #     "Сборы в мире",
+#     #      default=0,
+#     #      help_text="указать сумму в долларах"
+#     #     )
+#     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=False)
 
-    kinopoisk = models.FloatField("Кинопоиск")
-    amdb = models.FloatField("AMDB")
-    url = models.SlugField(max_length=200, unique=True)
-    data_url = models.URLField("Адрес для данных")
-    draft = models.BooleanField("Черновик", default=False)
+#     kinopoisk = models.FloatField("Кинопоиск")
+#     amdb = models.FloatField("AMDB")
+#     url = models.SlugField(max_length=200, unique=True)
+#     data_url = models.URLField("Адрес для данных", null=True, default='http://kinogo.by/')
+#     draft = models.BooleanField("Черновик", default=False)
 
-    def __str__(self):
-        return self.title
+#     def __str__(self):
+#         return self.title
 
-    class Meta:
-        """Meta definition for Serial."""
+#     class Meta:
+#         """Meta definition for Serial."""
 
-        verbose_name = 'Сериял'
-        verbose_name_plural = 'Сериялы'
+#         verbose_name = 'Сериял'
+#         verbose_name_plural = 'Сериялы'
 
 class MovieShots(models.Model):
     """Model definition for MovieShots."""

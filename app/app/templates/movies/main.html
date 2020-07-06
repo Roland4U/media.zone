@@ -15,17 +15,21 @@
                 {% endfor %}
                         
             </ul>
+            {% if page.has_next %}
+            <a class="infinite-more-link" href="?page={{ page.next_page_number }}"></a>
+            {% endif %}
         </div>
-        {% if page_obj.has_next %}
-     <a class="infinite-more-link" href="?page={{ page_obj.next_page_number }}"></a>
-     {% endif %}
-     <div class="spinner-border text-light" role="status">
-         <span class="sr-only">Loading...</span>
-     </div>
         
     </div>
+            
     
-    
+    <div class="row">
+        <div class="container d-flex justify-content-center ">
+            <div class="mt-5 spinner-border text-light" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </div>
     {% endblock content %}
     
     {% block script %}
@@ -43,7 +47,7 @@
                 $('.spinner-border').show();
             },
             onAfterPageLoad: function () {
-                $('.spinner-border').hide();
+              $('.spinner-border').hide();
             }
 
 

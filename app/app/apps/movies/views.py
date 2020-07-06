@@ -8,6 +8,8 @@ import os, sys, codecs
 # from django.db import models
 # from .models import *
 from .models import Movie, Actor, Category, Genre, Category
+from django.db.models import Q
+from django.core.paginator import Paginator
 import json
 
 #BeautifulSoup part
@@ -22,14 +24,50 @@ from bs4 import BeautifulSoup as bs
 
 class MoviesList(ListView):
     model = Movie
-    paginate_by = 2  # number of posts will load
+    paginate_by = 24  # number of posts will load
     context_object_name = 'movie'
     template_name = 'movies/main.html'
     ordering = ['-id']
-
+    genr = Genre.objects.all()
+    context = {"genres": genr}
 # class SerialsList(View, ObjectsList):
 #     model = Serial
 #     template = 'movies/main.html'
+
+class Movie_List(View):
+    def get(self, request):
+        genres = Genre.objects.all()
+        search_query = request.GET.get('search', '')
+
+        if search_query:
+            movies = Movie.objects.filter(Q(title__icontains=search_query))
+        else:
+            movies = Movie.objects.all()
+        
+        paginator = Paginator(movies, 24)
+
+        page_number = request.GET.get('page', 1)
+        page = paginator.get_page(page_number)
+
+        is_paginated = page.has_other_pages()
+
+        if page.has_previous():
+            prev_url = '?page={}'.format(page.previous_page_number())
+        else:
+            prev_url = ''
+        
+        if page.has_next():
+            next_url = '?page={}'.format(page.next_page_number())
+        else:
+            next_url = ''
+
+        context = {
+            'movie': page.object_list,
+            'genres': genres,
+            'page': page
+        }
+        return render(request, 'movies/main.html', context)
+
 
 class MoviesView(View):
     def get(self, request):
@@ -63,7 +101,7 @@ def upload(request):
     if request.method == 'POST':
         uploaded_file = request.FILES['document']
         print(uploaded_file.name)
-        print(int(uploaded_file.size) / 1000)
+        print(int(uploaded_file.size) / 1024)
 
         # if not uploaded_file.endswith('.json'):
         #     messages.error(request, 'This is not a JSON file')
@@ -83,27 +121,32 @@ def upload(request):
                 poster=col['poster'],
                 year=int(col['year']),
                 country=col['loacation'][0],
-                slug=col['page'][18::],
-                data_url=col['page']
-                # category=1
+                url=col['page'][18::],
+                data_url=col['page'],
 
                 # draft=col['draft']
             )
-            obj = Movie.objects.get(title=col['title'])
+            obj = Movie.objects.get(url__iexact=col['page'][18::])
             # if col['rating']['kp']:
             #     obj.kinopoisk=str(col['rating']['kp'])
             # # if col['rating']['IMDB:']:
             #     obj.amdb=str(col['rating']['IMDB:'])
             
             for g in col['genres']:
+                if g == None:
+                    continue
                 obj.genres.add(get_genre(g))
             for d in col['director']:
-                obj.directors.get_or_create(
-                    name=d,  description='asd', image='https://www.youtube.com/')
+                if d == None:
+                    continue
+                obj.directors.get_or_create(name=d)
             for a in col['actors']:
-                obj.actors.get_or_create(name=a,  description='asd', image='https://www.youtube.com/')
+                if a == None:
+                    continue
+                obj.actors.get_or_create(name=a)
                 
                 # c.category.add1,
+            print(obj)
            
     return render(request, 'upload.html')
 
