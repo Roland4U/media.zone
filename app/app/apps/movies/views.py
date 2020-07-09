@@ -1,8 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views.generic.base import View
 from django.views.generic import TemplateView
 from django.views.generic.list import ListView
+from .forms import UserRegForm, UserLogForm
+from django.contrib.auth.forms import UserCreationForm, User
+from django.contrib.auth.views import AuthenticationForm as Form
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LoginView
 from .utils import *
 import os, sys, codecs
 # from django.db import models
@@ -20,9 +25,23 @@ from bs4 import BeautifulSoup as bs
 # f = open('list.json', 'w', encoding='utf-8')
 # fr = open('list.json', 'r', encoding='utf-8')
 
+# 'login_form': login_form, 'reg_form': reg_form
 
+class UserReg(UserRegForm, UserCreationForm, View):
+    def get(self, request):
 
-class MoviesList(ListView):
+        reg_form = UserRegForm()
+
+        return render(request, 'base/user_reg.html', context={'reg_form': reg_form})
+
+    def post(self, request):
+        if request.method == "POST":
+            reg_form = UserRegForm(request.POST)
+            if reg_form.is_valid():
+                reg_form.save()
+                return redirect('m')
+
+class MoviesList(UserReg, ListView):
     model = Movie
     paginate_by = 24  # number of posts will load
     context_object_name = 'movie'
@@ -34,10 +53,12 @@ class MoviesList(ListView):
 #     model = Serial
 #     template = 'movies/main.html'
 
-class Movie_List(View):
+class Movie_List(UserReg, View):
     def get(self, request):
         genres = Genre.objects.all()
         search_query = request.GET.get('search', '')
+        login_form = UserLogForm()
+        reg_form = UserRegForm()
 
         if search_query:
             movies = Movie.objects.filter(Q(title__icontains=search_query))
@@ -64,7 +85,9 @@ class Movie_List(View):
         context = {
             'movie': page.object_list,
             'genres': genres,
-            'page': page
+            'page': page,
+            'login_form': login_form,
+            'reg_form': reg_form,
         }
         return render(request, 'movies/main.html', context)
 
@@ -73,7 +96,13 @@ class MoviesView(View):
     def get(self, request):
 
         movies = data.values()
-        return render(request, 'movies/main.html', context={'movies': movies})
+        login_form = UserLogForm()
+        reg_form = UserRegForm()
+        return render(request, 'movies/main.html', context={
+            'movies': movies, 
+            'login_form': login_form,
+            'reg_form': reg_form,
+            })
 class SerialsView(View):
     def get(self, request):
 

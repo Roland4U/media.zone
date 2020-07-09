@@ -8,7 +8,7 @@
     <div class="card col-9 m-5 p-0 text-white bg-secondary" style="background-blend-mode: color-burn;">
         <div class="row no-gutters justify-content-center">
             <div class="col-12 bg-dark text-center">
-                <h2 class="card-title my-3">{{ movie.name }}</h5>
+                <h2 class="card-title my-3">{{ movie.title }}</h5>
             </div>
             <div class="row container-fluid my-4 mx-0">
                 <div class="col-md-3 p-0">
@@ -20,7 +20,7 @@
                         <div class="row">
                             <div class="col">
                                 <p class="m-0">Год выпуска: <span>{{ movie.year }}</span></p>
-                                <p class="m-0">Страна: <span>{{ movie.location }}</span></p>
+                                <p class="m-0">Страна: <span>{{ movie.country }}</span></p>
                                 <p class="m-0">Жанр: <span>{% for g in movie.genres.all %}
                                     {{ g.name|title }},
                                     {% endfor %}

@@ -177,7 +177,7 @@ body {
   /* justify-self: end; */
   /* transform: translate(-50%,1%); */
   background: #4c5a6e;
-  height: 230px;
+  /* height: auto; */
   width: 250px;
   border-radius: 10px;
   padding: 5px;

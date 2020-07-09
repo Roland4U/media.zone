@@ -1,4 +1,5 @@
 {% load static %}
+{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,7 +54,9 @@
               <img src="{% static 'img/face_co.png' %}" alt="" class="profile_img">
             </div>
           </div>
-          <div id="profile_block" class="profile_block card ">
+
+          <!-- Profile block -->
+          <!-- <div id="profile_block" class="profile_block card ">
             <img src="{% static 'img/face_co.png' %}" class="card-img-top mx-auto" alt="...">
             <div class="card-body pl-3">
 
@@ -63,7 +66,115 @@
               </p>
               <a href="#" class="btn btn-sm btn-outline-danger float-right">Log out</a>
             </div>
+          </div> -->
+          <!-- End Profile block -->
+
+          <div id="profile_block" class="profile_block " style="height: auto;!important">
+            <div class="form-toggle">
+              <button id="login-toggle" onclick="toggleLogin()">
+                <h6>Login</h6>
+              </button>
+              <button id="signup-toggle" onclick="toggleSignup()">
+                <h6>Sign Up</h6>
+              </button>
+            </div>
+            <div id="login-form" class="login">
+              
+              <form action="{% url 'login' %}" method="POST">{% csrf_token %}
+                {% for field in login_form %}
+                <div class="form-group">
+                  {% if field.errors %}
+                  <div class="alert alert-danger" role="alert">
+                    {{ field.errors }}
+                  </div>
+                  {% endif %}
+                </div>
+                
+                
+                {% endfor %}
+                {{ login_form|crispy }}
+                <input type="checkbox"> Remember me<br><br>
+                <input type="submit" class="btn btn-primary" value="Login">
+              </form>
+            </div>
+            <div id="signup-form" class="signup">
+              <form class="form-horizontal" role="form" action="{% url 'reg' %}" method="POST">{% csrf_token %}
+              {% for field in reg_form %}
+              <div class="form-group">
+                {% if field.errors %}
+                <div class="alert alert-danger" role="alert">
+                  {{ field.errors }}
+                </div>
+                {% endif %}
+              </div>
+              
+              
+              {% endfor %}
+              {{ reg_form|crispy }}<br><br>
+                <input type="checkbox"> Remember me<br><br>
+                <input type="submit" value="Sign up">
+              </form>
+              
+              <style>
+                                  
+                  .signup, .login{
+                      background-color: rgba(39, 39, 39, 0.12);
+                      padding: 25px;
+                      padding-top: 40px;
+                  }
+
+                  .signup{
+                      display:none;
+                  }
+
+                  #login-toggle{
+                      border-bottom: 2px solid #fff;
+                  }
+
+                  .form-toggle button{
+                      width:50%;
+                      float:left;
+                      padding:0.5em;
+                      margin-bottom:1.5em;
+                      border:none;
+                      transition: 0.2s;
+                      /*font-size:1.1em;*/
+                      font-weight: bold;
+                      background-color: rgba(255, 255, 255, 0);
+                      color: white;
+                  }
+                  .form-toggle button:focus{
+                      outline:none;
+                  }
+              </style>
+
+              <script>
+                function toggleSignup() {
+                    document.getElementById("login-toggle").style.backgroundColor = "rgba(255, 255, 255, 0)";
+                    document.getElementById("login-toggle").style.color = "#fff";
+                    document.getElementById("login-toggle").style.border = "none";
+                    document.getElementById("signup-toggle").style.backgroundColor = "rgba(255, 255, 255, 0)";
+                    document.getElementById("signup-toggle").style.borderBottom = "2px solid #fff";
+                    document.getElementById("signup-toggle").style.color = "#fff";
+                    document.getElementById("login-form").style.display = "none";
+                    document.getElementById("signup-form").style.display = "block";
+                  }
+
+                  function toggleLogin() {
+                    document.getElementById("login-toggle").style.backgroundColor = "rgba(255, 255, 255, 0)";
+                    document.getElementById("login-toggle").style.color = "#fff";
+                    document.getElementById("login-toggle").style.borderBottom = "2px solid #fff";
+                    document.getElementById("signup-toggle").style.backgroundColor = "rgba(255, 255, 255, 0)";
+                    document.getElementById("signup-toggle").style.color = "#fff";
+                    document.getElementById("signup-toggle").style.border = "none";
+                    document.getElementById("signup-form").style.display = "none";
+                    document.getElementById("login-form").style.display = "block";
+                  }
+              </script>
+
+            </div>
           </div>
+
 
           <div id="fil_block" class="fil_block card ">
             <div class="card-body h-100 d-flex align-content-around flex-wrap ">
