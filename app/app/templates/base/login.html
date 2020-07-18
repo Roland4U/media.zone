@@ -1,23 +1,24 @@
-
 {% load crispy_forms_tags %}
+
 <!-- {% block content %} -->
     <!-- <div class="container mt-5"> -->
             <!-- <form action="{% url 'login' %}" method="POST">{% csrf_token %} -->
                 {% for field in login_form %}
-                    <div class="form-group">
+                <div class="form-group">
                          {% if field.errors %}
-                            <div class="alert alert-danger" role="alert">
+                         <div class="alert alert-danger" role="alert">
                                 {{ field.errors }}
                             </div>
-                        {% endif %}
+                            {% endif %}
                     </div>
                     
                     
                     {% endfor %}
                     {{ login_form|crispy }}
                    
-                <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                    <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
             <!-- </form> -->
             
    <!-- </div> -->
- <!-- {% endblock content %} -->
+   <!-- {% endblock content %} -->
+   <meta http-equiv="refresh" content="5;{% url 'm' %}">

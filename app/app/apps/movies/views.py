@@ -57,15 +57,21 @@ class Movie_List(UserReg, View):
     def get(self, request):
         genres = Genre.objects.all()
         search_query = request.GET.get('search', '')
+        filters = request.GET.getlist('genre')
         login_form = UserLogForm()
         reg_form = UserRegForm()
 
-        if search_query:
-            movies = Movie.objects.filter(Q(title__icontains=search_query))
+        if search_query and filters:
+            movies = Movie.objects.filter(Q(title__icontains=search_query) | Q(genres__in=filters))
+        elif search_query:
+            movies = Movie.objects.filter(Q(title__icontains=search_query) )
+        elif filters:
+            movies = Movie.objects.filter(Q(genres__in=filters))
         else:
             movies = Movie.objects.all()
         
         paginator = Paginator(movies, 24)
+        # g_list = Paginator(genres, 3)
 
         page_number = request.GET.get('page', 1)
         page = paginator.get_page(page_number)

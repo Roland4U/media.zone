@@ -1,6 +1,6 @@
 from django.db import models
 from datetime import date
-
+from django.contrib.auth.models import User
 from django.shortcuts import reverse
 
 
@@ -82,6 +82,7 @@ class Movie(models.Model):
     url = models.SlugField(max_length=200, unique=True)
     data_url = models.URLField("Адрес для данных", null=True)
     draft = models.BooleanField("Черновик", default=False)
+    hidden = models.ManyToManyField(User, related_name='hide_movie')
 
     def get_absolute_url(self):
         return reverse("movie_dec", kwargs={"slug": self.url})

@@ -56,18 +56,23 @@
           </div>
 
           <!-- Profile block -->
-          <!-- <div id="profile_block" class="profile_block card ">
+          {% if request.user.is_authenticated %}
+          <div id="profile_block" class="profile_block card ">
+            {% if request.user.is_staff %}
+              <a href="admin" class="btn btn-sm btn-info">Admin</a>
+            {% endif %}
             <img src="{% static 'img/face_co.png' %}" class="card-img-top mx-auto" alt="...">
             <div class="card-body pl-3">
 
               <h6 class="m-0 p-0 p_mail card-title text-light d-flex flex-row"><span class="material-icons mr-2 "
-                  style="bottom: 3px;">email</span>petrosyan.roland@yandex.com</h6>
+                  style="bottom: 3px;">email</span>{{ user.email }}</h6>
               <p class="card-text">
               </p>
-              <a href="#" class="btn btn-sm btn-outline-danger float-right">Log out</a>
+              <a href="exit" class="btn btn-sm btn-outline-danger float-right">Log out</a>
             </div>
-          </div> -->
+          </div>
           <!-- End Profile block -->
+          {% else %}
 
           <div id="profile_block" class="profile_block " style="height: auto;!important">
             <div class="form-toggle">
@@ -94,7 +99,7 @@
                 {% endfor %}
                 {{ login_form|crispy }}
                 <input type="checkbox"> Remember me<br><br>
-                <input type="submit" class="btn btn-primary" value="Login">
+                <input type="submit" class="btn btn-primary btn-sm" value="Login">
               </form>
             </div>
             <div id="signup-form" class="signup">
@@ -112,13 +117,13 @@
               {% endfor %}
               {{ reg_form|crispy }}<br><br>
                 <input type="checkbox"> Remember me<br><br>
-                <input type="submit" value="Sign up">
+                <input type="submit" class="btn btn-primary btn-sm" value="Sign up">
               </form>
               
               <style>
                                   
                   .signup, .login{
-                      background-color: rgba(39, 39, 39, 0.12);
+                      //background-color: rgba(39, 39, 39, 0.12);
                       padding: 25px;
                       padding-top: 40px;
                   }
@@ -140,7 +145,7 @@
                       transition: 0.2s;
                       /*font-size:1.1em;*/
                       font-weight: bold;
-                      background-color: rgba(255, 255, 255, 0);
+                      background-color: #20262c;
                       color: white;
                   }
                   .form-toggle button:focus{
@@ -173,16 +178,26 @@
               </script>
 
             </div>
+            {% endif %}
           </div>
 
 
           <div id="fil_block" class="fil_block card ">
-            <div class="card-body h-100 d-flex align-content-around flex-wrap ">
+            <div class="card-body h-100 d-flex align-content-around flex-wrap p-0">
               
-              {% for genre in genres %}
-              <button class="btn btn-outline-success m-1">{{ genre.name|title }}</button>
-                
-              {% endfor %}
+              <!-- <button class="btn btn-outline-success m-1"></button> -->
+                <form action="{% url 'm' %}" method="GET">
+              <div class="btn-group-grid btn-group-toggle d-flex align-content-around flex-wrap" data-toggle="buttons">
+                	{% for genre in genres %}
+                  <label class="btn btn-outline-primary btn-sm m-1" style="width: 145px; height: 30px; font-size: small;">
+                  <input type="checkbox" name="genre" autocomplete="off" value="{{ genre.id }}">{{ genre.name|title }}
+                	  </label>
+                	 
+                	  {% endfor %}
+                  </div>
+                  <hr>
+                  <button class="btn btn-success mt-2" type="submit">Найти</button>
+                </form>
               
             </div>
           </div>
