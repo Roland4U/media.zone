@@ -9,7 +9,7 @@ from .forms import UserLogForm
 
 urlpatterns = [
     path('', v.Movie_List.as_view(),  name='m'),
-    path('filter', v.Movie_List.as_view(),  name='filter'),
+    path('/', v.Movie_List.as_view(),  name='h'),
     path('reg', reg.as_view(), name='reg'),
     path('login', login.LoginView.as_view(template_name='base/login.html'), name='login'),
     path('exit', login.LogoutView.as_view(next_page='m'), name='exit'),

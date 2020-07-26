@@ -9,9 +9,10 @@
   "author": "R014nd",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^8.1.1"
+    "electron": "^8.4.0"
   },
   "dependencies": {
+    "bootstrap": "^4.5.0",
     "electron-titlebar": "0.0.3"
   }
 }

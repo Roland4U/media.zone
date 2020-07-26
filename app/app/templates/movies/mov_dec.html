@@ -50,7 +50,7 @@
                             </button>                                   
                         <!--  -->
                         <!-- Trailer btn -->
-                            <button style="padding:2px ; height: 36px; font-size: 14px; padding-right: 8px;" type="button"
+                            <button id="trail_btn" style="padding:2px ; height: 36px; font-size: 14px; padding-right: 8px;" type="button"
                                 class="btn btn-info btn-lg d-flex align-items-center btn-block video-btn" data-toggle="modal"
                                 
                                 src="https://www.youtube.com/embed/S1bhQ3M5mtw" data-target="#myModal">
@@ -70,6 +70,54 @@
                         <!-- Trailer btn end -->      
 
 
+                            <script>
+                                (function () {
+                                    // Retrieve remote BrowserWindow
+                                    const { BrowserWindow } = require('electron').remote
+
+                                    function createWindow() {
+
+                                        const t_player = new BrowserWindow({
+                                            // width: 412,
+                                            // height: 412,
+                                            minHeight: 300,
+                                            minWidth: 350,
+                                            // maxHeight: 412,
+                                            // maxWidth: 412,
+                                            icon: "css.ico",
+                                            autoHideMenuBar: true,
+                                            // frame: false,
+                                            // thickFrame: false,
+                                            // opacity: 0.9,
+                                            // titleBarStyle: "customButtonsOnHover",
+                                            // transparent: false,
+                                            titleBarStyle: "hidden",
+                                            resizable: true,
+                                            // vibrancy: "window",
+                                            webPreferences: {
+                                                nodeIntegration: true,
+                                                nativeWindowOpen: true,
+                                            },
+                                            show: false,
+                                        });
+                                        
+                                    
+                                        document.getElementById("trail_btn").addEventListener("click", (e) => {
+                                            t_player.loadURL(
+                                                `https://cdn.plrjs.com/player/k4rz3391aa89i/izc6xultqnb1.html?file={{ md.trailer }}`
+                                            );
+                                            t_player.show();
+                                            t_player.seek
+                                        });
+                                    };
+
+                                    document.onreadystatechange = () => {
+                                        if (document.readyState == "complete") {
+                                            createWindow();
+                                        }
+                                    };
+                                })();
+                            </script>
                             <script>
                                 (function () {
                                     // Retrieve remote BrowserWindow
@@ -104,6 +152,13 @@
                                         document.getElementById("play_btn").addEventListener("click", (e) => {
                                             v_player.loadURL(
                                                 `https://cdn.plrjs.com/player/k4rz3391aa89i/izc6xultqnb1.html?file={{ md.video }}`
+                                            );
+                                            v_player.show();
+                                            v_player.seek
+                                        });
+                                        document.getElementById("trail_btn").addEventListener("click", (e) => {
+                                            v_player.loadURL(
+                                                `https://cdn.plrjs.com/player/k4rz3391aa89i/izc6xultqnb1.html?file={{ md.trailer }}`
                                             );
                                             v_player.show();
                                             v_player.seek

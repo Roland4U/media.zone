@@ -57,6 +57,7 @@ class Movie_List(UserReg, View):
     def get(self, request):
         genres = Genre.objects.all()
         search_query = request.GET.get('search', '')
+        hide_movie = request.GET.get('hide_movie', '')
         filters = request.GET.getlist('genre')
         login_form = UserLogForm()
         reg_form = UserRegForm()
@@ -64,12 +65,18 @@ class Movie_List(UserReg, View):
         if search_query and filters:
             movies = Movie.objects.filter(Q(title__icontains=search_query) | Q(genres__in=filters))
         elif search_query:
-            movies = Movie.objects.filter(Q(title__icontains=search_query) )
+            movies = Movie.objects.filter(Q(title__icontains=search_query))
         elif filters:
             movies = Movie.objects.filter(Q(genres__in=filters))
         else:
-            movies = Movie.objects.all()
+            if request.user.is_authenticated:
+                movies = Movie.objects.filter(hidden=None)
+            else:
+                movies = Movie.objects.all()    
         
+        if hide_movie and request.user.is_authenticated:
+            Movie.objects.get(id=hide_movie).hidden.add(request.user)
+
         paginator = Paginator(movies, 24)
         # g_list = Paginator(genres, 3)
 
@@ -96,7 +103,7 @@ class Movie_List(UserReg, View):
             'reg_form': reg_form,
         }
         return render(request, 'movies/main.html', context)
-
+    
 
 class MoviesView(View):
     def get(self, request):
@@ -154,7 +161,7 @@ def upload(request):
                 duration=col['duration'],
                 description=col['des'],
                 poster=col['poster'],
-                year=int(col['year']),
+                year=int(col['year'][:4:]),
                 country=col['loacation'][0],
                 url=col['page'][18::],
                 data_url=col['page'],

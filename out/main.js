@@ -41,7 +41,6 @@ function createWindow() {
         transparent: true,
         resizable: false,
         skipTaskbar: true,
-        thickFrame: false,
         vibrancy: 'window',
         webPreferences: {
           nodeIntegration: true,

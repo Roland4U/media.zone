@@ -1,25 +1,28 @@
-#!/usr/bin/env python
-# import os
-# import sys
-
-# try:
-#     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'app.settings')
-#     print('ok')
-#     from apps.movies.models import Movie
-#     print('pff')
-# except:
-#     print('no')
-
+import requests
+from bs4 import BeautifulSoup as bs
 import json
-from app.apps.movies.models import Movie
 
-links_list = []
-with open('kino.json', 'r') as data:
+r = requests.get('https://kinogo.by/7528-agents-of-shield_1-7-sezon.html')
 
-    for i in json.loads(data.read()):
-        links_list.append(i.get('year'))
+html = bs(r.content, 'html.parser')
+# l = None
+for i in html.select('.visible'):
+    l = str(i.select('script')[2]).replace("<script>", '').replace("// var engine=new p2pml.hlsjs.Engine()", '').replace("var player1=new Playerjs", '').replace("id", '\"id\"').replace("//p2pml.hlsjs.initHlsJsPlayer(player1.api('hls'));", '').replace("</script>", '')
+# l = str(l).split(',')
+# l = dict(l)
+# t = json.scanner(str(l))
 
-print(str(links_list))
+    # .replace(
+        # "$('.box_trailers').load('", '').replace("', function() { });", '')
+    print(l, end='\n\n***END***\n\n')
 
-l = Movie.objects.all()
-print(str(l))
+    
+# r2 = requests.get('https://kinogo.by/'+l)
+
+# soup = bs(r2.content, 'lxml')
+
+# for s in soup.select('body'):
+#     t = str(s.select('script')[0]).replace(
+#         "<script>", '').replace("var player = new Playerjs(", '').replace(');', '').replace("</script>", '').replace(" ", '').replace("id", '"id"').replace("file", '"file"')
+#     t = json.loads(str(t))
+#     print(t["file"], end='\n\n')
