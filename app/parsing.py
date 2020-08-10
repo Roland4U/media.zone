@@ -1,20 +1,30 @@
 import requests
 from bs4 import BeautifulSoup as bs
 import json
+import codecs
 
-r = requests.get('https://kinogo.by/7528-agents-of-shield_1-7-sezon.html')
+r = requests.get(
+    'https://kinogo.by/3983-sverhestestvennoe-15-sezon___14-10.html')
 
-html = bs(r.content, 'html.parser')
-# l = None
+html = bs(r.content, 'lxml')
+# l = []
+b = []
 for i in html.select('.visible'):
-    l = str(i.select('script')[2]).replace("<script>", '').replace("// var engine=new p2pml.hlsjs.Engine()", '').replace("var player1=new Playerjs", '').replace("id", '\"id\"').replace("//p2pml.hlsjs.initHlsJsPlayer(player1.api('hls'));", '').replace("</script>", '')
+    # b = str(i.select('script')[2])
+    l = str(i.select('script')[2]).replace("<script>", '').replace("var player1 = new Playerjs", '').replace("//var engine = new p2pml.hlsjs.Engine();", '').replace("var player1=new Playerjs", '').replace("({id", '{"id"').replace("hlsconfig", '"hlsconfig"').replace(
+        "p2pConfig", '"p2pConfig"').replace("logLevel", '"logLevel"').replace("live", '"live"').replace(",        // set to true in \"live\" mode", '').replace("preroll", '"preroll"').replace("//p2pml.hlsjs.initHlsJsPlayer(player1.api('hls'));", '').replace("cuid", '"cuid"').replace("preview.jpg\"});", 'preview.jpg"}').replace("</script>", '')
+    
 # l = str(l).split(',')
 # l = dict(l)
-# t = json.scanner(str(l))
+# b.append(l)
+t = json.loads(str(l))
+print(t.get('poster'))
 
     # .replace(
         # "$('.box_trailers').load('", '').replace("', function() { });", '')
-    print(l, end='\n\n***END***\n\n')
+# with open('st.json', 'wt', encoding='utf-8') as data:
+#     data.write(t)
+# print(type(l), end='\n\n***END***\n\n')
 
     
 # r2 = requests.get('https://kinogo.by/'+l)

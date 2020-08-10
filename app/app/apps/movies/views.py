@@ -104,6 +104,57 @@ class Movie_List(UserReg, View):
         }
         return render(request, 'movies/main.html', context)
     
+class Serial_List(UserReg, View):
+    def get(self, request):
+        genres = Genre.objects.all()
+        search_query = request.GET.get('search', '')
+        hide_movie = request.GET.get('hide_movie', '')
+        filters = request.GET.getlist('genre')
+        login_form = UserLogForm()
+        reg_form = UserRegForm()
+
+        if search_query and filters:
+            movies = Movie.objects.filter(Q(title__icontains=search_query) | Q(genres__in=filters))
+        elif search_query:
+            movies = Movie.objects.filter(Q(title__icontains=search_query))
+        elif filters:
+            movies = Movie.objects.filter(Q(genres__in=filters))
+        else:
+            if request.user.is_authenticated:
+                movies = Movie.objects.filter(hidden=None)
+            else:
+                movies = Movie.objects.all()    
+        
+        if hide_movie and request.user.is_authenticated:
+            Movie.objects.get(id=hide_movie).hidden.add(request.user)
+
+        paginator = Paginator(movies, 24)
+        # g_list = Paginator(genres, 3)
+
+        page_number = request.GET.get('page', 1)
+        page = paginator.get_page(page_number)
+
+        is_paginated = page.has_other_pages()
+
+        if page.has_previous():
+            prev_url = '?page={}'.format(page.previous_page_number())
+        else:
+            prev_url = ''
+        
+        if page.has_next():
+            next_url = '?page={}'.format(page.next_page_number())
+        else:
+            next_url = ''
+
+        context = {
+            'movie': page.object_list,
+            'genres': genres,
+            'page': page,
+            'login_form': login_form,
+            'reg_form': reg_form,
+        }
+        return render(request, 'movies/main.html', context)
+    
 
 class MoviesView(View):
     def get(self, request):
@@ -132,7 +183,12 @@ class Serial_dec(View):
     def get(self, request, num):
      pass
 
+# from tqdm import tqdm, trange
+from tqdm.asyncio import trange, tqdm
+
 def upload(request):
+
+
     def get_genre(x):
         g = Genre.objects.filter(name__icontains=u''+x.upper()).first()
         return g
@@ -140,57 +196,64 @@ def upload(request):
     #     o = Movie.actors.get_or_create(name=x)
 
     #     return o
-    if request.method == 'POST':
-        uploaded_file = request.FILES['document']
-        print(uploaded_file.name)
-        print(int(uploaded_file.size) / 1024)
+    async def req(request):
+        if request.method == 'POST':
 
-        # if not uploaded_file.endswith('.json'):
-        #     messages.error(request, 'This is not a JSON file')
-        
-        data_set = json.load(uploaded_file)
+            uploaded_file = request.FILES['document']
+            print(uploaded_file.name)
+            print(int(uploaded_file.size) / 1024 / 1024)
 
-        # def get_directors(directors):
-        #     Actor.objects.get_or_create(name=str(directors).upper())
-
-        for col in data_set:
-            _, created = Movie.objects.update_or_create(
-                title=col['title'],
-                quality=col['quality'],
-                translate=col['translate'],
-                duration=col['duration'],
-                description=col['des'],
-                poster=col['poster'],
-                year=int(col['year'][:4:]),
-                country=col['loacation'][0],
-                url=col['page'][18::],
-                data_url=col['page'],
-
-                # draft=col['draft']
-            )
-            obj = Movie.objects.get(url__iexact=col['page'][18::])
-            # if col['rating']['kp']:
-            #     obj.kinopoisk=str(col['rating']['kp'])
-            # # if col['rating']['IMDB:']:
-            #     obj.amdb=str(col['rating']['IMDB:'])
+            # if not uploaded_file.endswith('.json'):
+            #     messages.error(request, 'This is not a JSON file')
             
-            for g in col['genres']:
-                if g == None:
-                    continue
-                obj.genres.add(get_genre(g))
-            for d in col['director']:
-                if d == None:
-                    continue
-                obj.directors.get_or_create(name=d)
-            for a in col['actors']:
-                if a == None:
-                    continue
-                obj.actors.get_or_create(name=a)
-                
-                # c.category.add1,
-            print(obj)
-           
+            data_set = json.load(uploaded_file)
+
+            # def get_directors(directors):
+            #     Actor.objects.get_or_create(name=str(directors).upper())
+            async for p in tqdm(range(int(len(data_set)))):
+            
+                async for col in data_set:
+
+                    _, created = Movie.objects.update_or_create(
+                        title=col['title'],
+                        quality=col['quality'],
+                        translate=col['translate'],
+                        duration=col['duration'],
+                        description=col['des'],
+                        poster=col['poster'],
+                        year=int(col['year'][:4:]),
+                        country=col['loacation'][0],
+                        url=col['page'][18::],
+                        data_url=col['page']
+                        # category=1,
+
+                        # draft=col['draft']
+                    )
+                    obj = Movie.objects.get(url__iexact=col['page'][18::])
+                    # if col['rating']['kp']:
+                    #     obj.kinopoisk=str(col['rating']['kp'])
+                    # # if col['rating']['IMDB:']:
+                    #     obj.amdb=str(col['rating']['IMDB:'])
+                    
+                    for g in col['genres']:
+                        if g == None:
+                            continue
+                        obj.genres.add(get_genre(g))
+                    for d in col['director']:
+                        if d == None:
+                            continue
+                        obj.directors.get_or_create(name=d)
+                    for a in col['actors']:
+                        if a == None:
+                            continue
+                        obj.actors.get_or_create(name=a)
+                        
+                        # c.category.add1,
+                    # print(obj)
+                    # await None
+    req(request)
     return render(request, 'upload.html')
+
 
 #Model
 # data = {
